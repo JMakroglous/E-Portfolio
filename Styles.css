@@ -175,6 +175,7 @@ padding: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 25px 16px;
 }
 
 .language__list {
