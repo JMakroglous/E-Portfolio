@@ -148,6 +148,21 @@ nav {
   padding: 0 16px;
 }
 
+.about-me__links {
+  animation: fade-up 650ms 800ms backwards;
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .about-me__img--container {
   flex: 1;
   display: flex;
