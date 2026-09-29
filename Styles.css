@@ -6,8 +6,11 @@
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6,
-span {
+html {
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6, span {
   color: #242424;
   text-align: center;
   line-height: 1.25;
@@ -20,6 +23,38 @@ h1 {
 p {
   line-height: 1.5;
   font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  position: relative;
+  transition: opacity 300ms ease;
+}
+
+i:hover {
+  opacity: 0.7;
+}
+
+.link__hover-effect:after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 0;
+  bottom: -3px;
+  right: 0;
+  transition: all 300ms ease;
+}
+
+.link__hover-effect--white:after {
+  background-color: #fff;
+}
+.link__hover-effect--black:after {
+  background-color: #000;
+}
+
+.link__hover-effect:hover:after {
+  width: 100%;
+  left: 0;
 }
 
 li {
@@ -37,11 +72,15 @@ li {
 .container {
   padding: 50px 0;
 }
-
 .row {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 12px;
+}
+
+.text--purple {
+  color: #6030b1;
 }
 
 section:nth-child(even) {
@@ -52,7 +91,7 @@ section:nth-child(even) {
   margin-bottom: 20px;
 }
 
-/* NAVIDATION BAR */
+/* NAVIGATION BAR */
 
 nav {
   height: 100px;
@@ -62,6 +101,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 12px;
 }
 
 .nav__link--list {
@@ -71,7 +111,6 @@ nav {
 .nav__link--anchor {
   margin: 0 12px;
   color: #242424;
-  text-decoration: none;
   font-weight: 700;
 }
 
@@ -82,15 +121,16 @@ nav {
   color: white;
   transition: all 300ms ease;
 }
+
 .nav__link--anchor-primary:hover {
-  background-color: #5b3eff;
+  background-color: #5d3eff;
 }
 
 .personal__logo {
   font-size: 24px;
   color: #6030b1;
   margin: 0 12px;
-  font-weight: bold;
+  font-weight: bold
 }
 
 /* ABOUT ME */
@@ -109,19 +149,32 @@ nav {
 .about-me__info--container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
 }
+
 .about-me__picture--mask {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0, 15);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
   margin-bottom: 28px;
+  animation: animate-profile-picture 800ms 200ms backwards;
+}
+
+@keyframes animate-profile-picture {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .about-me__picture {
@@ -129,22 +182,22 @@ nav {
 
   /* Improving my own picture */
   transform: scale(1.5);
-  padding: 8px;
+  padding-top: 8px;
 }
 
 .about-me__info--title {
   margin-bottom: 16px;
+  animation: fade-up 650ms 400ms backwards;
 }
-
 .about-me__info--para {
   font-size: 20px;
   margin-bottom: 28px;
+  animation: fade-up 650ms 600ms backwards;
 }
 
 .about-me__link {
   font-size: 20px;
   color: #242424;
-  text-decoration: none;
   padding: 0 16px;
 }
 
@@ -168,13 +221,35 @@ nav {
   display: flex;
   align-items: center;
 }
-
-.about-me__img--container {
-  margin-top: 48px;
-}
-
 .about-me__img {
   width: 100%;
+  animation: fade-in 1200ms 800ms backwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.wave {
+  display: inline-block;
+  animation: animate-wave 500ms infinite ease-in-out;
+}
+
+@keyframes animate-wave {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
 }
 
 /* TECH - STACK */
@@ -184,7 +259,6 @@ nav {
   max-width: 100px;
   transition: all 300ms;
 }
-
 .language:hover .language__img {
   filter: brightness(80%);
   opacity: 0.86;
@@ -206,9 +280,9 @@ nav {
 
 .language__list {
   display: flex;
+  justify-content: center;
   width: 100%;
   flex-wrap: wrap;
-  position: relative;
 }
 
 .language__name {
@@ -219,13 +293,12 @@ nav {
   font-size: 20px;
   opacity: 0;
 }
-
 .language:hover .language__name {
   transform: scale(1);
   opacity: 1;
 }
 
-/* PROJECT */
+/* PROJECTS */
 
 .project {
   margin-bottom: 135px;
@@ -247,7 +320,6 @@ nav {
   overflow: hidden;
   position: relative;
 }
-
 .project__wrapper:before {
   content: "";
   position: absolute;
@@ -261,7 +333,6 @@ nav {
   z-index: 2;
   transform: translateY(100%);
 }
-
 .project:hover .project__wrapper:before {
   transform: translateY(0);
   opacity: 0.7;
@@ -311,25 +382,6 @@ nav {
   text-align: left;
   color: #fff;
 }
-
-
-@keyframes animate-wave {
-  0% {
-    transform: rotate(0);
-  }
-  50% {
-    transform: rotate(30deg);
-  }
-  100% {
-    transform: rotate(0);
-  }
-}
-
-.wave {
-  display: inline-block;
-  animation: animate-wave 500ms infinite ease-in-out;
-}
-
 
 /* FOOTER */
 
